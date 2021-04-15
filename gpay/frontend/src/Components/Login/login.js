@@ -5,18 +5,23 @@ function Login() {
   const [phoneNumber, setPhoneNumber] = useState();
   const [temporary, setTemporary] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  
+  const handleSubmit = () => {
+
     setPhoneNumber(temporary);
     setTemporary("");
  
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form  method="POST" action="/auth">
         <h1>Login</h1>
         <input
         className="inputs"
+        name="phonenumber"
+
+
           type="tel"
           onChange={(e) => {
             setTemporary(e.target.value);
@@ -25,8 +30,10 @@ function Login() {
           value={temporary}
         />
         <br/>
-        <button type="submit" className="buttons">Submit</button>
+        <button type="submit" className="buttons" onClick={handleSubmit}>Submit</button>
         <h3>{phoneNumber}</h3>
+
+
       </form>
     </div>
   );
