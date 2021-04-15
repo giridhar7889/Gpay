@@ -1,10 +1,5 @@
 from django.shortcuts import render
 
-
-
-
-
-
 def auth(request):
 
     if request.method == 'POST':
