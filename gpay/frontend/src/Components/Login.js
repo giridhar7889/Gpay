@@ -3,8 +3,7 @@ import React, { useState } from "react";
 
 function Login() {
    
-const csrftoken = getCookie('csrftoken');
-  //var csrftoken = '{{ csrf_token }}';
+
   const [phoneNumber, setPhoneNumber] = useState();
   const [temporary, setTemporary] = useState("");
 
