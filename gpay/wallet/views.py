@@ -97,7 +97,6 @@ class transaction_withdraw(APIView):
         print(wallet_instance)
         print(id_pk_wallet)
         if request.data['withdraw'] > wallet_instance.current_balance:
-
             return Response(status=status.HTTP_404_NOT_FOUND, data={"key": "This wallet has insufficient balance "})
 
         # TRANSACTION CREATION FOR THAT WITHDRAWN AMOUNT
@@ -126,4 +125,19 @@ class transaction_withdraw(APIView):
         return Response(status=status.HTTP_201_CREATED, data={"key": "key"})
 
 
+class transaction_transfer(APIView):
+    permission_classes = [IsAuthenticated]
 
+    # def transfer(self,wallet,value):
+    #     self.withdraw(wallet,value)
+    #     wallet.deposit(value)
+
+    def post(self, request, *args, **kwargs):
+        request.data['withdraw'] = request.data['amount']
+        withdraw_data = transaction_withdraw.post(request)
+        request.data['deposit'] = request.data['amount']
+        deposit_data = transaction_deposit.post(request)
+
+        print(withdraw_data)
+        print(deposit_data)
+        return Response(status=status.HTTP_201_CREATED, data={"key": "key"})
