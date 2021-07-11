@@ -30,7 +30,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls',namespace="rest_framework")),
     path('api/user/',include('users.urls',namespace="users")),
-    path('api/wallet/',include('wallet.urls',namespace="wallet"))
+    path('api/wallet/',include('wallet.urls',namespace="wallet")),
+    path('api/blockchain/',include('blockchain.urls',namespace="blockchain"))
 
 
 ]
